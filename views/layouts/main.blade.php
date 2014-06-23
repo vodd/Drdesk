@@ -6,17 +6,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Medic Desk Beta v12042014</title>
+    <title>Razi Beta v24052014</title>
 
     {{HTML::style('css/bootstrap.min.css')}}
     {{HTML::style('css/font-awesome.css')}}
     {{HTML::style('css/plugins/morris/morris-0.4.3.min.css')}}
     {{HTML::style('css/plugins/timeline/timeline.css')}}
     {{HTML::style('css/sb-admin.css')}}
+    {{HTML::style('css/fullcalendar.min.css')}}
 
     {{HTML::script('js/angular.min.js')}}
-    
-    
+    {{HTML::script('js/jquery-1.10.2.js')}}
+    {{HTML::script('js/bootstrap.min.js')}}
+    {{HTML::script('js/jquery-ui.custom.min.js')}}
+    {{HTML::script('js/plugins/metisMenu/jquery.metisMenu.js')}}
+    {{HTML::script('js/plugins/morris/raphael-2.1.0.min.js')}}
+    {{HTML::script('js/plugins/morris/morris.js')}}
+    {{HTML::script('js/sb-admin.js')}}
+    {{HTML::script('js/demo/dashboard-demo.js')}}
+    {{HTML::script('js/fullcalendar.min.js')}}
+
+
 
 </head>
 
@@ -32,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Medic desk <small>Beta v12042014</small></a>
+                <a class="navbar-brand" href="#">Razi <small>Beta v24052014</small></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -49,10 +59,11 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li>
+                        {{HTML::link('user/'.Auth::user()->id.'/edit','Parametres')}}
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>{{HTML::link('user/logout','Parametres')}}
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -70,8 +81,8 @@
                     <li class="sidebar-search">
                         <div >
                         {{Form::open(array('url'=>'search','class'=>'input-group custom-search-form'))}}
-                        
-                       
+
+
                             <input type="text" class="form-control" placeholder="Recherche..." name="search">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
@@ -116,27 +127,88 @@
                     <div class="panel panel-default">
 
                         <div class="panel-body">
-                           
+
                         </div>
                         <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    
-                        
 
-    </div>
+                    <!-- /.panel -->
+
+
+
+
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
 
-    {{HTML::script('js/jquery-1.10.2.js')}}
-    {{HTML::script('js/bootstrap.min.js')}}
-    {{HTML::script('js/plugins/metisMenu/jquery.metisMenu.js')}}
-    {{HTML::script('js/plugins/morris/raphael-2.1.0.min.js')}}
-    {{HTML::script('js/plugins/morris/morris.js')}}
-    {{HTML::script('js/sb-admin.js')}}
-    {{HTML::script('js/demo/dashboard-demo.js')}}
 
+
+    <script>
+
+	$(document).ready(function() {
+
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			editable: true,
+			events: [
+				{
+					title: 'All Day Event',
+					start: new Date(y, m, 1)
+				},
+				{
+					title: 'Long Event',
+					start: new Date(y, m, d-5),
+					end: new Date(y, m, d-2)
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d-3, 16, 0),
+					allDay: false
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(y, m, d+4, 16, 0),
+					allDay: false
+				},
+				{
+					title: 'Meeting',
+					start: new Date(y, m, d, 10, 30),
+					allDay: false
+				},
+				{
+					title: 'Lunch',
+					start: new Date(y, m, d, 12, 0),
+					end: new Date(y, m, d, 14, 0),
+					allDay: false
+				},
+				{
+					title: 'Birthday Party',
+					start: new Date(y, m, d+1, 19, 0),
+					end: new Date(y, m, d+1, 22, 30),
+					allDay: false
+				},
+				{
+					title: 'Click for Google',
+					start: new Date(y, m, 28),
+					end: new Date(y, m, 29),
+					url: 'http://google.com/'
+				}
+			]
+		});
+
+	});
+
+</script>
 
 </body>
 

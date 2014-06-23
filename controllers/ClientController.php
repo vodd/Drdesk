@@ -29,18 +29,17 @@ class ClientController extends BaseController {
 	public function store(){
 			$client = New Client;
 
-			
-			$client->name = Input::get('name');		
-			$client->firstname = Input::get('firstname');		
-			$client->age = Input::get('age');		
-			$client->address = Input::get('address');		
-			$client->professtion = Input::get('professtion');		
-			$client->tel = Input::get('tel');			
-			$client->sexe = Input::get('sexe');			
-			$client->lieunais = Input::get('lieunais');			
-			$client->namewo = Input::get('namewo');	
-			$client->diag = Input::get('diag');			
-			$client->thare = Input::get('thare');			
+			$client->name = Input::get('name');
+			$client->firstname = Input::get('firstname');
+			$client->age = Input::get('age');
+			$client->address = Input::get('address');
+			$client->professtion = Input::get('professtion');
+			$client->tel = Input::get('tel');
+			$client->sexe = Input::get('sexe');
+			$client->lieunais = Input::get('lieunais');
+			$client->namewo = Input::get('namewo');
+			$client->diag = Input::get('diag');
+			$client->thare = Input::get('thare');
 			$client->save();
 
 			return Redirect::to('client/'.$client->id);
@@ -56,9 +55,11 @@ class ClientController extends BaseController {
 	public function show($id){
 		$client = Client::find($id);
 		$orda = Client::find($id)->posts;
+		$result = Client::find($id)->ecos;
 		return View::make('client.show')
 			->with('title',$client->name)
 			->with('client',$client)
+			->with('result',$result)
 			->with('orda',$orda);
 	}
 
@@ -83,21 +84,28 @@ class ClientController extends BaseController {
 	{
 			$client = Client::find($id);
 
-			$client->name = Input::get('name');		
-			$client->firstname = Input::get('firstname');		
-			$client->age = Input::get('age');		
-			$client->address = Input::get('address');		
-			$client->professtion = Input::get('professtion');		
-			$client->tel = Input::get('tel');			
-			$client->sexe = Input::get('sexe');			
-			$client->lieunais = Input::get('lieunais');			
-			$client->email = Input::get('email');			
-			$client->namewo = Input::get('namewo');			
-			$client->diag = Input::get('diag');			
-			$client->thare = Input::get('thare');			
+			$client->name = Input::get('name');
+			$client->firstname = Input::get('firstname');
+			$client->age = Input::get('age');
+			$client->address = Input::get('address');
+			$client->professtion = Input::get('professtion');
+			$client->tel = Input::get('tel');
+			$client->sexe = Input::get('sexe');
+			$client->lieunais = Input::get('lieunais');
+			$client->email = Input::get('email');
+			$client->namewo = Input::get('namewo');
+			$client->diag = Input::get('diag');
+			$client->thare = Input::get('thare');
+			/**$client->TA = Input::get('TA');
+			$client->FC = Input::get('FC');
+			$client->poids = Input::get('poids');
+			$client->ecg = Input::get('ecg');
+			$client->SF = Input::get('SF');
+			$client->Sp = Input::get('Sp');
+			$client->soin = Input::get('soin');*/
 			$client->save();
 
-			return Redirect::to('client/'.Input::get('id'));
+			return Redirect::to('client/'.$id);
 	}
 
 	/**
@@ -106,10 +114,7 @@ class ClientController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
-	}
+
 
 
 }

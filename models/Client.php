@@ -52,5 +52,14 @@ class Client extends Eloquent implements UserInterface, RemindableInterface {
 	public function posts(){
 	 	return $this->hasMany('Post');
 	 }
+	public function results(){
+		return $this->hasMany('Result');
+	}
+	public function ecos(){
+		return $this->hasMany('Eco');
+	}
+	public function files(){
+		return $this->hasMany('File');
+	}
 
 }

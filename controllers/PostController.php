@@ -32,7 +32,7 @@ class PostController extends BaseController {
 				->with('client',$client)
 				->with('med',$med)
 				->with('list',$list)
-				->with('id',$id)	
+				->with('id',$id)
 				->with('post',$post);
 	}
 
@@ -43,7 +43,7 @@ class PostController extends BaseController {
 	 */
 	public function save($id)
 	{
-			$orda = New Post;	
+			$orda = New Post;
 			$orda->client_id = $id;
 			$orda->save();
 

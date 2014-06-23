@@ -41,7 +41,7 @@
 		</div>
 		<div class="form-group">
 				{{Form::label('diag','Diagnostique :',array('class'=>'col-sm-2 control-label'))}}
-				{{Form::textarea('diag')}}
+				{{Form::text('diag')}}
 		</div>
 		<div class="form-group">
 				{{Form::label('thare','Tares :',array('class'=>'col-sm-2 control-label'))}}
